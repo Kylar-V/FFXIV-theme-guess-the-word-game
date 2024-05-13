@@ -36,8 +36,15 @@ h1 {
   font-style: normal;
   font-style: normal;
   font-weight: normal;
-  font-size: 44px;
+  font-size: 50px;
   text-align: center;
+  margin-bottom: 10px;
+}
+
+p {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 20px;
+  color: #000000;
 }
 
 /* Container styles */
@@ -57,20 +64,20 @@ h1 {
 /* Highlighted text */
 .highlight {
   padding: 0.25em;
-  background: #246abb;
+  background: #31accaa6;
   font-size: 1em;
 }
 
 /* Underline effect */
 .underline {
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid #d1d422;
   padding-bottom: 3px;
 }
 
 /* Word in progress */
 .word-in-progress {
   letter-spacing: 15px;
-  color: #315f9c;
+  color: #186fe0;
   font-size: 30px;
 }
 
@@ -78,6 +85,8 @@ h1 {
 .guessed-letters {
   padding: 0;
   list-style: none;
+  color: #fdfdfd;
+  font-family: "Cinzel Decorative", serif;
 }
 
 .guessed-letters li {
