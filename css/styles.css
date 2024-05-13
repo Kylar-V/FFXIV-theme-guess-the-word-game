@@ -1,0 +1,170 @@
+/* Reset styles and global box-sizing */
+* {
+  box-sizing: border-box;
+}
+
+/* Base styles */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-family: "Old Standard TT", serif, "Cinzel Decorative", serif;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 150%;
+  background-color: #dff6f6;
+  background-image: url("../img/FFXIV background 5.jpg");
+  background-size: cover; /* Ensure the background image covers the entire container */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-position: center; /* Center the background image */
+  color: #305050;
+}
+
+/* Logo styling */
+.logo {
+  width: 70%;
+  max-width: 484px;
+}
+
+/* Heading styles */
+h1 {
+  width: 100%;
+  padding-top: 1em;
+  margin: 0;
+  font-family: "Cinzel Decorative", serif;
+  font-style: normal;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 44px;
+  text-align: center;
+}
+
+/* Container styles */
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+}
+
+/* Hide class */
+.hide {
+  display: none;
+}
+
+/* Highlighted text */
+.highlight {
+  padding: 0.25em;
+  background: #246abb;
+  font-size: 1em;
+}
+
+/* Underline effect */
+.underline {
+  border-bottom: 2px solid #fff;
+  padding-bottom: 3px;
+}
+
+/* Word in progress */
+.word-in-progress {
+  letter-spacing: 15px;
+  color: #315f9c;
+  font-size: 30px;
+}
+
+/* Guessed letters list */
+.guessed-letters {
+  padding: 0;
+  list-style: none;
+}
+
+.guessed-letters li {
+  display: inline-block;
+  padding: 0 0.5em;
+}
+
+/* Message styles */
+.message {
+  text-align: center;
+}
+
+/* Guess form */
+.guess-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.guess-form label {
+  width: 100%;
+  font-weight: normal;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Input field */
+input {
+  width: 2.25em;
+  text-align: center;
+  font-size: 1.5em;
+  margin-top: 0.5em;
+  padding: 0.5em;
+  border: 3px solid #28bdbd;
+}
+
+input:active,
+input:focus {
+  outline: 0;
+  border: 4px solid #28bdbd;
+}
+
+/* Guess and play again buttons */
+.guess,
+.play-again {
+  padding: 1em 3em;
+  border-radius: 30px;
+  margin-top: 1em;
+  color: #f8f8f8;
+  background: #206ed4;
+  font-size: 1em;
+  align-self: center;
+  outline: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.guess:active,
+.play-again:active,
+.guess:focus,
+.play-again:focus,
+.guess:hover,
+.play-again:hover {
+  outline: 0;
+  transform: scale(0.98);
+  filter: brightness(0.9);
+  color: white;
+}
+
+/* Animated background */
+.win {
+  padding: 0 1em;
+  background: linear-gradient(-45deg, #51c7d6, #47e2da);
+  background-size: 400% 400%;
+  animation: gradient 2s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
