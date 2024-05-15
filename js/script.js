@@ -1,180 +1,15 @@
 const guessedLettersElement = document.querySelector(".guessed-letters");
-const guessLetterButton = document.querySelector(".guess");
+const guessLetterButton = document.querySelector(".btn-guess");
 const letterInput = document.querySelector(".letter");
 const wordInProgress = document.querySelector(".word-in-progress");
 const remainingGuessesElement = document.querySelector(".remaining");
 const remainingGuessesSpan = document.querySelector(".remaining span");
 const message = document.querySelector(".message");
-const playAgainButton = document.querySelector(".play-again");
+const playAgainButton = document.querySelector(".btn-play-again");
 
-let word = "magnolia";
+let word = "fire";
 let guessedLetters = [];
 let remainingGuesses = 12;
-
-// Arrays for words related to classes, items ad characters//
-const classesWords = [
-  "Paladin",
-  "Warrior",
-  "Dark Knight",
-  "White Mage",
-  "Scholar",
-  "Astrologian",
-  "Monk",
-  "Dragoon",
-  "Ninja",
-  "Samurai",
-  "Bard",
-  "Machinist",
-  "Black Mage",
-  "Summoner",
-  "Red Mage",
-  "Blue Mage",
-  "Gunbreaker",
-  "Dancer",
-  "Marauder",
-  "Gladiator",
-  "Conjurer",
-  "Arcanist",
-  "Pugilist",
-  "Lancer",
-  "Rogue",
-  "Archer",
-  "Thaumaturge",
-  "Alchemist",
-  "Carpenter",
-  "Blacksmith",
-  "Armorer",
-  "Goldsmith",
-  "Leatherworker",
-  "Weaver",
-  "Culinarian",
-  "Miner",
-  "Botanist",
-  "Fisher",
-];
-const mainCharacterFirstNames = [
-  "Y'shtola",
-  "Thancred",
-  "Urianger",
-  "Alphinaud",
-  "Alisaie",
-  "Minfilia",
-  "Tataru",
-  "Yda",
-  "Papalymo",
-  "Estinien",
-  "Aymeric",
-  "Haurchefant",
-  "Yugiri",
-  "Lyse",
-  "Raubahn",
-  "Kan-E-Senna",
-  "Merlwyb",
-  "Nanamo",
-  "Hien",
-  "Gosetsu",
-  "Zenos",
-  "Emet-Selch",
-  "G'raha Tia",
-  "Crystal Exarch",
-  "Zenos",
-];
-const mainLocations = [
-  "Limsa Lominsa",
-  "Ul'dah",
-  "Gridania",
-  "Ishgard",
-  "Kugane",
-  "Idyllshire",
-  "Rhalgr's Reach",
-  "The Crystarium",
-  "Eulmore",
-  "The Rising Stones",
-  "The Waking Sands",
-  "The Firmament",
-  "The Gold Saucer",
-  "The Ruby Sea",
-  "Mor Dhona",
-  "The Lochs",
-  "The Rak'tika Greatwood",
-  "The Tempest",
-  "Amh Araeng",
-  "The Azim Steppe",
-  "The Dravanian Hinterlands",
-  "Coerthas Western Highlands",
-  "The Black Shroud",
-  "La Noscea",
-  "Thanalan",
-];
-const primalWords = [
-  "Ifrit",
-  "Titan",
-  "Garuda",
-  "Leviathan",
-  "Ramuh",
-  "Shiva",
-  "Ravana",
-  "Bismarck",
-  "Alexander",
-  "Odin",
-  "Ultima Weapon",
-  "Sephirot",
-  "Nidhogg",
-  "Sophia",
-  "Susano",
-  "Byakko",
-  "Tsukuyomi",
-  "Suzaku",
-  "Seiryu",
-  "Titania",
-  "Innocence",
-  "Hades",
-  "Shinryu",
-  "Zurvan",
-];
-const spellWords = [
-  "Fire",
-  "Blizzard",
-  "Thunder",
-  "Aero",
-  "Stone",
-  "Water",
-  "Fira",
-  "Blizzara",
-  "Thundara",
-  "Aerora",
-  "Stonega",
-  "Watera",
-  "Firaga",
-  "Blizzaga",
-  "Thundaga",
-  "Aeroga",
-  "Quake",
-  "Tornado",
-  "Meteor",
-  "Ultima",
-  "Cure",
-  "Curaga",
-  "Protect",
-  "Shell",
-  "Reflect",
-  "Regen",
-  "Haste",
-  "Slow",
-  "Stop",
-  "Bio",
-];
-const gameMechanics = [
-  "Chocobo",
-  "Limit Break",
-  "Materia",
-  "Glamour",
-  "Mount",
-  "Duty Finder",
-  "Teleport",
-  "Aetherial Manipulation",
-  "Triple Triad",
-];
 
 const placeholder = function (word) {
   const placeholderLetters = [];
@@ -188,24 +23,7 @@ const placeholder = function (word) {
   wordInProgress.innerText = placeholderLetters.join("");
 };
 
-const getWord = function () {
-  const categories = [
-    classesWords,
-    mainCharacterFirstNames,
-    mainLocations,
-    primalWords,
-    spellWords,
-    gameMechanics,
-  ];
-  const randomCategoryIndex = Math.floor(Math.random() * categories.length);
-  const selectedCategory = categories[randomCategoryIndex];
-  const randomIndex = Math.floor(Math.random() * selectedCategory.length);
-  word = selectedCategory[randomIndex].trim();
-
-  placeholder(word);
-};
-
-getWord();
+placeholder(word);
 
 guessLetterButton.addEventListener("click", function (e) {
   e.preventDefault();
@@ -258,18 +76,19 @@ const showGuessedLetters = function () {
 
 const updateWordInProgress = function (guessedLetters) {
   const wordUpper = word.toUpperCase();
-  const wordArray = wordUpper.split("");
   const revealWord = [];
-  for (const letter of wordArray) {
+  for (const letter of wordUpper) {
     if (guessedLetters.includes(letter)) {
-      revealWord.push(letter.toUpperCase());
+      revealWord.push(letter);
+    } else if (letter === " ") {
+      revealWord.push(" ");
     } else {
       revealWord.push("●");
     }
   }
 
   wordInProgress.innerText = revealWord.join("");
-  checkIfWin();
+  checkIfWin(revealWord); // Pass the revealWord to the checkIfWin function
 };
 
 const updateGuessesRemaining = function (guess) {
@@ -282,8 +101,8 @@ const updateGuessesRemaining = function (guess) {
   }
 
   if (remainingGuesses === 0) {
-    message.innerHTML = `Quest failed! The word was <span class="highlight">${word}</span>.`;
-    startOver();
+    message.innerHTML = `You have failed Adventurer! The word was <span class="highlight">${word}</span>.`;
+    startOver(false); // Pass false to indicate the player lost
   } else if (remainingGuesses === 1) {
     remainingGuessesSpan.innerText = `${remainingGuesses} guess`;
   } else {
@@ -291,19 +110,27 @@ const updateGuessesRemaining = function (guess) {
   }
 };
 
-const checkIfWin = function () {
-  if (word.toUpperCase() === wordInProgress.innerText) {
+const checkIfWin = function (revealWord) {
+  const guessedWord = revealWord.join("").toUpperCase();
+  if (word.toUpperCase() === guessedWord) {
     message.classList.add("win");
-    message.innerHTML = `<p class="highlight">Congratulations Adventurer! You guessed it correctly!</p>`;
-    startOver();
+    message.innerHTML = `<p class="highlight">Congratulations Adventurer! You guessed the word correctly!</p>`;
+    startOver(true); // Pass true to indicate the player won
   }
 };
 
-const startOver = function () {
+const startOver = function (hasWon) {
   guessLetterButton.classList.add("hide");
   remainingGuessesElement.classList.add("hide");
   guessedLettersElement.classList.add("hide");
   playAgainButton.classList.remove("hide");
+
+  if (hasWon) {
+    message.classList.add("win");
+    message.innerHTML = `<p class="highlight">Congratulations Adventurer! You guessed the word correctly!</p>`;
+  } else {
+    message.innerHTML = `You have failed Adventurer! The word was <span class="highlight">${word}</span>.`;
+  }
 };
 
 playAgainButton.addEventListener("click", function () {
@@ -313,9 +140,10 @@ playAgainButton.addEventListener("click", function () {
   remainingGuessesSpan.innerText = `${remainingGuesses} guesses`;
   guessedLettersElement.innerHTML = "";
   message.innerText = "";
-  getWord();
+  placeholder(word);
 
   guessLetterButton.classList.remove("hide");
+  guessLetterButton.removeAttribute("disabled"); // Re-enable the guess button
   playAgainButton.classList.add("hide");
   remainingGuessesElement.classList.remove("hide");
   guessedLettersElement.classList.remove("hide");
