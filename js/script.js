@@ -11,6 +11,174 @@ let word = "fire";
 let guessedLetters = [];
 let remainingGuesses = 12;
 
+const classesWords = [
+  "Paladin",
+  "Warrior",
+  "Dark Knight",
+  "White Mage",
+  "Scholar",
+  "Astrologian",
+  "Monk",
+  "Dragoon",
+  "Ninja",
+  "Samurai",
+  "Bard",
+  "Machinist",
+  "Black Mage",
+  "Summoner",
+  "Red Mage",
+  "Blue Mage",
+  "Gunbreaker",
+  "Dancer",
+  "Marauder",
+  "Gladiator",
+  "Conjurer",
+  "Arcanist",
+  "Pugilist",
+  "Lancer",
+  "Rogue",
+  "Archer",
+  "Thaumaturge",
+  "Alchemist",
+  "Carpenter",
+  "Blacksmith",
+  "Armorer",
+  "Goldsmith",
+  "Leatherworker",
+  "Weaver",
+  "Culinarian",
+  "Miner",
+  "Botanist",
+  "Fisher",
+];
+
+const mainCharacterFirstNames = [
+  "Y'shtola",
+  "Thancred",
+  "Urianger",
+  "Alphinaud",
+  "Alisaie",
+  "Minfilia",
+  "Tataru",
+  "Yda",
+  "Papalymo",
+  "Estinien",
+  "Aymeric",
+  "Haurchefant",
+  "Yugiri",
+  "Lyse",
+  "Raubahn",
+  "Kan-E-Senna",
+  "Merlwyb",
+  "Nanamo",
+  "Hien",
+  "Gosetsu",
+  "Zenos",
+  "Emet-Selch",
+  "G'raha Tia",
+  "Crystal Exarch",
+];
+
+const mainLocations = [
+  "Limsa Lominsa",
+  "Ul'dah",
+  "Gridania",
+  "Ishgard",
+  "Kugane",
+  "Idyllshire",
+  "Rhalgr's Reach",
+  "The Crystarium",
+  "Eulmore",
+  "The Rising Stones",
+  "The Waking Sands",
+  "The Firmament",
+  "The Gold Saucer",
+  "The Ruby Sea",
+  "Mor Dhona",
+  "The Lochs",
+  "The Rak'tika Greatwood",
+  "The Tempest",
+  "Amh Araeng",
+  "The Azim Steppe",
+  "The Dravanian Hinterlands",
+  "Coerthas Western Highlands",
+  "The Black Shroud",
+  "La Noscea",
+  "Thanalan",
+];
+
+const primalWords = [
+  "Ifrit",
+  "Titan",
+  "Garuda",
+  "Leviathan",
+  "Ramuh",
+  "Shiva",
+  "Ravana",
+  "Bismarck",
+  "Alexander",
+  "Odin",
+  "Ultima Weapon",
+  "Sephirot",
+  "Nidhogg",
+  "Sophia",
+  "Susano",
+  "Byakko",
+  "Tsukuyomi",
+  "Suzaku",
+  "Seiryu",
+  "Titania",
+  "Innocence",
+  "Hades",
+  "Shinryu",
+  "Zurvan",
+];
+
+const spellWords = [
+  "Fire",
+  "Blizzard",
+  "Thunder",
+  "Aero",
+  "Stone",
+  "Water",
+  "Fira",
+  "Blizzara",
+  "Thundara",
+  "Aerora",
+  "Stonega",
+  "Watera",
+  "Firaga",
+  "Blizzaga",
+  "Thundaga",
+  "Aeroga",
+  "Quake",
+  "Tornado",
+  "Meteor",
+  "Ultima",
+  "Cure",
+  "Curaga",
+  "Protect",
+  "Shell",
+  "Reflect",
+  "Regen",
+  "Haste",
+  "Slow",
+  "Stop",
+  "Bio",
+];
+
+const gameMechanics = [
+  "Chocobo",
+  "Limit Break",
+  "Materia",
+  "Glamour",
+  "Mount",
+  "Duty Finder",
+  "Teleport",
+  "Aetherial Manipulation",
+  "Triple Triad",
+];
+
 const placeholder = function (word) {
   const placeholderLetters = [];
   for (const letter of word) {
@@ -23,7 +191,25 @@ const placeholder = function (word) {
   wordInProgress.innerText = placeholderLetters.join("");
 };
 
-placeholder(word);
+const getWord = function () {
+  const categories = [
+    classesWords,
+    mainCharacterFirstNames,
+    mainLocations,
+    primalWords,
+    spellWords,
+    gameMechanics,
+  ];
+  const randomCategoryIndex = Math.floor(Math.random() * categories.length);
+  const selectedCategory = categories[randomCategoryIndex];
+  const randomIndex = Math.floor(Math.random() * selectedCategory.length);
+  word = selectedCategory[randomIndex].trim();
+
+  placeholder(word);
+};
+
+// Call the getWord function to choose a random word
+getWord();
 
 guessLetterButton.addEventListener("click", function (e) {
   e.preventDefault();
@@ -170,4 +356,3 @@ const startOver = function (hasWon) {
     guessedLettersElement.classList.remove("hide");
   });
 };
-
