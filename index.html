@@ -18,7 +18,7 @@
 
   <body>
     <div class="container">
-      <h1>Final Fantasy<br /></h1>
+      <h1>Final Fantasy</h1>
       <h1>Guess the word</h1>
       <p class="message"></p>
       <p class="word-in-progress"></p>
@@ -37,5 +37,25 @@
         <span class="btn-text">Play Again, Warrior of light!</span>
       </button>
     </div>
+    <audio autoplay loop>
+      <source
+        src="audio/bard-s-tale-danijel-zambo-main-version-29899-02-09.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <audio id="winSound" preload="auto">
+      <source
+        src="audio/level-complete-mobile-game-app-locran-1-00-06.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <audio id="incorrectGuessSound" preload="auto">
+      <source
+        src="audio/you-suck-monster-tomas-herudek-1-1-00-02.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
   </body>
 </html>

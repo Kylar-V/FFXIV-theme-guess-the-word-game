@@ -91,16 +91,23 @@ const updateWordInProgress = function (guessedLetters) {
   checkIfWin(revealWord); // Pass the revealWord to the checkIfWin function
 };
 
+const incorrectGuessSound = document.getElementById("incorrectGuessSound");
+
+const playIncorrectGuessSound = function () {
+  incorrectGuessSound.play(); // Play incorrect guess sound
+};
+
 const updateGuessesRemaining = function (guess) {
   const upperWord = word.toUpperCase();
   if (!upperWord.includes(guess)) {
     message.innerText = `Sorry, but this word doesn't have a ${guess} in it.`;
     remainingGuesses -= 1;
   } else {
-    message.innerText = `Nice one Adventurer! You guessed correctly! The word has the letter ${guess}.`;
+    message.innerText = `Good job Adventurer! You guessed correctly! The word has the letter ${guess}.`;
   }
 
   if (remainingGuesses === 0) {
+    playIncorrectGuessSound(); // Call the function to play the incorrect guess sound
     message.innerHTML = `You have failed Adventurer! The word was <span class="highlight">${word}</span>.`;
     startOver(false); // Pass false to indicate the player lost
   } else if (remainingGuesses === 1) {
@@ -110,9 +117,16 @@ const updateGuessesRemaining = function (guess) {
   }
 };
 
+const winSound = document.getElementById("winSound");
+
+const playWinSound = function () {
+  winSound.play(); // Play win sound
+};
+
 const checkIfWin = function (revealWord) {
   const guessedWord = revealWord.join("").toUpperCase();
   if (word.toUpperCase() === guessedWord) {
+    playWinSound(); // Call the function to play the win sound
     message.classList.add("win");
     message.innerHTML = `<p class="highlight">Congratulations Adventurer! You guessed the word correctly!</p>`;
     startOver(true); // Pass true to indicate the player won
@@ -125,26 +139,35 @@ const startOver = function (hasWon) {
   guessedLettersElement.classList.add("hide");
   playAgainButton.classList.remove("hide");
 
+  // Disable the input field
+  letterInput.disabled = true;
+
   if (hasWon) {
     message.classList.add("win");
     message.innerHTML = `<p class="highlight">Congratulations Adventurer! You guessed the word correctly!</p>`;
   } else {
     message.innerHTML = `You have failed Adventurer! The word was <span class="highlight">${word}</span>.`;
   }
+
+  // Re-enable the input field when the player clicks the "Play Again" button
+  playAgainButton.addEventListener("click", function () {
+    guessedLetters = [];
+    remainingGuesses = 12;
+    remainingGuessesSpan.innerText = `${remainingGuesses} guesses`;
+    guessedLettersElement.innerHTML = "";
+    message.innerText = "";
+    placeholder(word);
+
+    // Re-enable the input field
+    letterInput.disabled = false;
+
+    // Hide the "Play Again" button
+    playAgainButton.classList.add("hide");
+
+    // Show the guess button and remaining guesses element
+    guessLetterButton.classList.remove("hide");
+    remainingGuessesElement.classList.remove("hide");
+    guessedLettersElement.classList.remove("hide");
+  });
 };
 
-playAgainButton.addEventListener("click", function () {
-  message.classList.remove("win");
-  guessedLetters = [];
-  remainingGuesses = 12;
-  remainingGuessesSpan.innerText = `${remainingGuesses} guesses`;
-  guessedLettersElement.innerHTML = "";
-  message.innerText = "";
-  placeholder(word);
-
-  guessLetterButton.classList.remove("hide");
-  guessLetterButton.removeAttribute("disabled"); // Re-enable the guess button
-  playAgainButton.classList.add("hide");
-  remainingGuessesElement.classList.remove("hide");
-  guessedLettersElement.classList.remove("hide");
-});

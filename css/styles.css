@@ -2,18 +2,18 @@
 :root {
   --font-primary: "Old Standard TT", serif;
   --font-secondary: "Cinzel Decorative", serif;
-  --color-primary: #000000;
-  --color-secondary: #131212;
+  --color-primary: #f00909;
+  --color-secondary: #0f0f0f;
   --color-accent: #28bdbd;
   --color-background: #2515b3;
   --color-background-image: url("../img/Background 7.webp");
   --color-button-background: #2495c9;
   --color-button-text: #000000;
-  --color-text: #000000;
+  --color-text: #300404;
   --btn-color-start: #93bfcc;
   --btn-color-end: #2159ad;
   --btn-hover-grow-scale: 1.1;
-  --btn-shimmer-duration: 1.5s;
+  --btn-shimmer-duration: 1.4s;
 }
 
 /* Reset styles and global box-sizing */
@@ -42,9 +42,10 @@ body {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  width: 90%;
+  width: 100%;
   padding: 20px;
   border-radius: 10px;
+  height: 100vh;
 }
 
 h1 {
@@ -55,25 +56,41 @@ h1 {
   margin-bottom: 10px;
 }
 
+.guess-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-guess,
+.btn-play-again {
+  margin-top: 20px; /* Adjust margin as needed */
+}
+
+
 .message {
   font-size: 40px;
   text-align: center;
   margin-bottom: 10px;
   color: var(--color-text);
+  font-weight: bold;
 }
 
 .word-in-progress {
   letter-spacing: 15px;
   color: var(--color-secondary);
-  font-size: 30px;
+  font-size: 35px;
 }
 
 .remaining {
   margin-bottom: 10px;
   color: var(--color-text);
+  font-size: 28px;
+  /* font-weight: bold; */
 }
 
 .guessed-letters {
+  font-size: 25px;
   padding: 0;
   list-style: none;
   color: var(--color-secondary);
@@ -92,6 +109,11 @@ input {
   margin-top: 0.5em;
   padding: 0.5em;
   border: 3px solid var(--color-accent);
+}
+
+label[for="letter"] {
+  font-size: 30px;
+  color: #af1515;
 }
 
 input:active,
