@@ -361,3 +361,14 @@ const checkIfWin = function (revealWord) {
     startOver(true); // Pass true to indicate the player won
   }
 };
+
+const hintButton = document.querySelector(".btnhint");
+
+hintButton.addEventListener("click", function () {
+  displayHint();
+});
+
+const displayHint = function() {
+  const currentCategory = getCurrentCategory();
+}
+

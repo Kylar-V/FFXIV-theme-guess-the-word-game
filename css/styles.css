@@ -66,7 +66,6 @@ h1 {
   margin-top: 20px; /* Adjust margin as needed */
 }
 
-
 .message {
   font-size: 40px;
   text-align: center;
@@ -123,7 +122,8 @@ input:focus {
 
 .btn,
 .btn-guess,
-.btn-play-again {
+.btn-play-again,
+.btn-hint {
   padding: 1em 1.5em;
   border-radius: 25px;
   margin-top: 1em;
@@ -139,6 +139,26 @@ input:focus {
   overflow: hidden; /* Ensure the shimmer effect stays within the button */
 }
 
+.btn-hint:hover {
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -500px 0;
+  }
+  100% {
+    background-position: 500px 0;
+  }
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
 .btn:hover,
 .btn-guess:hover,
 .btn-play-again:hover {
@@ -152,14 +172,22 @@ input:focus {
 
 /* Shimmer effect */
 .btn-guess::before,
-.btn-play-again::before {
-  content: '';
+.btn-play-again::before,
+.btn-hint::before {
+  content: "";
   position: absolute;
   top: 0;
   left: -150%;
   width: 250%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, var(--btn-color-start), var(--btn-color-end), var(--btn-color-start), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--btn-color-start),
+    var(--btn-color-end),
+    var(--btn-color-start),
+    transparent
+  );
   background-size: 200% 100%;
   animation: shimmer var(--btn-shimmer-duration) infinite;
   pointer-events: none;
