@@ -134,22 +134,17 @@ input:focus {
   border: 0;
   cursor: pointer;
   transition: transform 0.2s, filter 0.2s;
-  display: inline-block; /* Ensure buttons appear on the same line */
+  display: inline-block;
   position: relative;
-  overflow: hidden; /* Ensure the shimmer effect stays within the button */
+  overflow: hidden;
 }
 
+.btn:hover,
+.btn-guess:hover,
+.btn-play-again:hover,
 .btn-hint:hover {
-  animation: shimmer 1.5s infinite linear;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -500px 0;
-  }
-  100% {
-    background-position: 500px 0;
-  }
+  transform: scale(var(--btn-hover-grow-scale));
+  filter: brightness(1.1);
 }
 
 .button-container {
@@ -159,18 +154,30 @@ input:focus {
   margin: 20px;
 }
 
-.btn:hover,
-.btn-guess:hover,
-.btn-play-again:hover {
-  transform: scale(1.1);
-  filter: brightness(1.1);
-}
-
 .hide {
   display: none;
 }
 
+.hint-message {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 9999;
+}
+
+.hint-message.show {
+  display: block;
+}
+
+
 /* Shimmer effect */
+.btn::before,
 .btn-guess::before,
 .btn-play-again::before,
 .btn-hint::before {
