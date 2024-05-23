@@ -500,7 +500,6 @@ const playBackgroundMusic = function () {
   backgroundMusic.play();
 };
 
-
 const getWord = function () {
   const categoryKeys = Object.keys(wordData);
   const randomCategoryKey =
@@ -539,7 +538,6 @@ const validateInput = function (input) {
   }
 };
 
-
 const makeGuess = function (guess) {
   guess = guess.toUpperCase();
   if (guessedLetters.includes(guess)) {
@@ -569,7 +567,9 @@ const updateWordInProgress = function (guessedLetters) {
   const wordArray = wordUpper.split("");
   const revealWord = [];
   for (const letter of wordArray) {
-    if (guessedLetters.includes(letter)) {
+    if (letter === " ") {
+      revealWord.push(" "); // If the letter is a space, keep it as is
+    } else if (guessedLetters.includes(letter)) {
       revealWord.push(letter.toUpperCase());
     } else {
       revealWord.push("●");
@@ -584,31 +584,28 @@ const playLoseSound = function () {
   loseSound.play(); // Play the lose sound
 };
 
-
 const updateGuessesRemaining = function (guess) {
   const upperWord = word.toUpperCase();
   if (!upperWord.includes(guess)) {
-    message.innerText = `Sorry, this word doesn't have a ${guess} in it.`;
     remainingGuesses -= 1;
+    message.innerText = `Sorry, this word doesn't have a ${guess} in it.`;
   } else {
     message.innerText = `Nice one! You guessed correctly! The word has the letter ${guess}.`;
   }
 
-  if (remainingGuesses === 0) {
+  if (remainingGuesses <= 0) {
     message.innerHTML = `Game over! The word was <span class="highlight">${word}</span>. You've used up all your guesses.`;
     playLoseSound();
-    disableInputAndButtons(); // Disable guess button
+    disableInputAndButtons(); // Disable input and guess button
     showPlayAgainButton(); // Show play again button
     guessButton.classList.add("hide"); // Hide guess button
+    remainingGuessesSpan.innerText = "0 guesses";
   } else if (remainingGuesses === 1) {
     remainingGuessesSpan.innerText = `${remainingGuesses} guess`;
   } else {
     remainingGuessesSpan.innerText = `${remainingGuesses} guesses`;
   }
 };
-
-
-
 
 const playWinSound = function () {
   const winSound = document.getElementById("winSound"); // Get the win sound element
@@ -623,7 +620,6 @@ const checkIfWin = function () {
     startOver(); // Call startOver function to hide guess button and show play again button
   }
 };
-
 
 const disableInputAndButtons = function () {
   guessInput.disabled = true;
@@ -640,7 +636,7 @@ playAgainButton.addEventListener("click", function () {
 
 playAgainButton.addEventListener("click", function () {
   message.classList.remove("win");
-  guessedLetters = []; 
+  guessedLetters = [];
   remainingGuesses = 10;
   remainingGuessesSpan.innerText = `${remainingGuesses} guesses`;
   guessedLettersElement.innerHTML = "";
@@ -654,15 +650,12 @@ playAgainButton.addEventListener("click", function () {
   guessedLettersElement.classList.remove("hide");
 });
 
-
-
 const startOver = function () {
   guessButton.classList.add("hide");
   remainingGuessesSpan.classList.add("hide");
   guessedLettersElement.classList.add("hide");
   playAgainButton.classList.remove("hide");
 };
-
 
 guessButton.addEventListener("click", function (event) {
   event.preventDefault(); // Prevent form submission
@@ -673,7 +666,14 @@ guessButton.addEventListener("click", function (event) {
 });
 
 hintButton.addEventListener("click", function () {
-  message.innerHTML = `Hint: ${wordData[word].hint}`;
+  const hint = wordData[word].hint;
+  message.innerHTML = `Hint: ${hint}`;
+
+  // Show the hint message for 6 seconds
+  const hintTimeout = 6000; // 6 seconds
+  setTimeout(function () {
+    message.innerHTML = ""; // Clear the hint message
+  }, hintTimeout);
 });
 
 // Call initialization function
