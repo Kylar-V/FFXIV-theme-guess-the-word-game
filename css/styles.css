@@ -39,24 +39,62 @@ body {
 
 .container {
   display: flex;
-  flex-direction: column; /* Display contents in a column */
-  justify-content: center; /* Center content vertically */
-  align-items: center; /* Center content horizontally */
-  width: 80%;
-  height: 100vh;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.5
-  ); /* Adjust background color as needed */
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%; /* Adjusted from 80% to make it more flexible */
+  height: 85%;
+  padding: 4vw; /* Adjusted padding */
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden; /* Prevent overflow */
+}
+
+h1 {
+  font-family: var(--font-secondary);
+  font-size: 5vw;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.guessed-letters {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 0; /* Added padding */
+}
+
+.guessed-letters li {
+  font-size: 2.5vw; /* Adjusted font size */
+  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.1); /* Added background color */
+  border-radius: 5px; /* Added border radius */
+}
+
+.message,
+.remaining,
+.word-in-progress {
+  width: 100%;
+  text-align: center;
+  font-size: 4vw;
+}
+
+.guess-form,
+.button-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 5vw; /* Adjust padding as needed */
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow for better visibility */
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column; /* Change flex direction */
+  gap: 10px;
+  align-items: center;
+  margin: 20px 0; /* Adjusted margin */
 }
 
 .container p {
@@ -70,59 +108,8 @@ body {
 }
 
 .remaining {
-  font-size: 20px;
+  font-size: 3vw;
   margin-bottom: 20px;
-}
-
-.guessed-letters {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 100%;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 10px;
-}
-
-.guessed-letters li {
-  font-size: 16px;
-  padding: 5px 10px;
-}
-
-.message {
-  font-size: 20px;
-  color: red;
-  margin-top: 20px;
-}
-
-.highlight {
-  background-color: #2ba4d4;
-  color: #ffffff;
-  font-weight: bold;
-  padding: 5px 5px;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  margin: 0;
-  font-family: var(--font-secondary);
-  font-size: 5vw;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.guess-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.btn-guess,
-.btn-play-again {
-  margin-top: 20px; /* Adjust margin as needed */
 }
 
 .message {
@@ -139,30 +126,12 @@ h1 {
   font-size: 5vw;
 }
 
-.remaining {
-  margin-bottom: 10px;
-  color: var(--color-text);
-  font-size: 3vw;
-  /* font-weight: bold; */
-}
-
-.word-in-progress,
-.remaining,
-.guessed-letters,
-.message {
-  width: 100%; /* Ensure contents take up full width of container */
-  max-width: 90%; /* Limit maximum width to 90% of container width */
-  text-align: center; /* Center align the text */
-}
-
-
-
 input {
   width: 2.25em;
   text-align: center;
-  font-size: 1.5em;
+  font-size: 4vw;
   margin-top: 0.5em;
-  padding: 0.5em;
+  padding: 1vw; /* Adjusted padding */
   border: 3px solid var(--color-accent);
 }
 
@@ -181,12 +150,12 @@ input:focus {
 .btn-guess,
 .btn-play-again,
 .btn-hint {
-  padding: 1em 1.5em;
+  padding: 1vw 1.5vw; /* Adjusted padding */
   border-radius: 25px;
   margin-top: 1em;
   color: var(--color-button-text);
   background: var(--color-button-background);
-  font-size: 1em;
+  font-size: 3vw;
   outline: none;
   border: 0;
   cursor: pointer;
@@ -204,34 +173,9 @@ input:focus {
   filter: brightness(1.1);
 }
 
-.button-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px;
-}
-
 .hide {
   display: none;
 }
-
-.hint-message {
-  display: none;
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  z-index: 9999;
-}
-
-.hint-message.show {
-  display: block;
-}
-
 /* Shimmer effect */
 .btn::before,
 .btn-guess::before,
@@ -252,8 +196,7 @@ input:focus {
     transparent
   );
   background-size: 200% 100%;
-  animation: shimmer var(--btn-shimmer-duration) infinite;
-  pointer-events: none;
+  animation: shimmer var(--btn-shimmer-duration) infinite; /* Added 'infinite' to make the animation continuous */
 }
 
 @keyframes shimmer {
@@ -265,7 +208,81 @@ input:focus {
   }
 }
 
-.btn-text {
-  position: relative;
-  z-index: 1;
+
+/*styles for tablets*/
+@media screen and (min-width: 765px) {
+  .container {
+    width: 80%;
+    padding: 4vw;
+  }
+
+  h1 {
+    font-size: 3vw;
+  }
+
+  .message,
+  .remaining,
+  .word-in-progress {
+    font-size: 3vw;
+  }
+
+  .guessed-letters li {
+    font-size: 2vw;
+  }
+
+  input {
+    font-size: 3vw;
+    padding: 0.75vw;
+  }
+
+  .btn,
+  .btn-guess,
+  .btn-play-again,
+  .btn-hint {
+    font-size: 3vw;
+    padding: 1.5vw;
+  }
+
+  .button-container {
+    flex-direction: row;
+  }
+}
+
+/*styles for laptops.*/
+@media screen and (min-width: 1200px) {
+  .container {
+    width: 60%;
+    padding: 2vw;
+  }
+
+  h1 {
+    font-size: 2vw;
+  }
+
+  .message,
+  .remaining,
+  .word-in-progress {
+    font-size: 2vw;
+  }
+
+  .guessed-letters li {
+    font-size: 1.2em;
+  }
+
+  input {
+    font-size: 1.5em;
+    padding: 0.5em;
+  }
+
+  .btn,
+  .btn-guess,
+  .btn-play-again,
+  .btn-hint {
+    font-size: 1em;
+    padding: 0.75em 1.25em; /* Adjust padding to make buttons smaller */
+  }
+
+  .button-container {
+    margin: 20px;
+  }
 }
