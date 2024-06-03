@@ -387,9 +387,9 @@ const remainingGuessesSpan = document.querySelector(".remaining span");
 const guessedLettersElement = document.querySelector(".guessed-letters");
 
 let word;
-let remainingGuesses = 10; // Initialize remaining guesses
-let guessedLetters = []; // Initialize guessed letters array
-let hintUsed = false; // Initialize hint usage flag
+let remainingGuesses = 10;
+let guessedLetters = [];
+let hintUsed = false;
 
 const playBackgroundMusic = function () {
   const backgroundMusic = document.getElementById("backgroundMusic");
@@ -405,7 +405,6 @@ const getWord = function () {
   const randomWord = randomCategory[randomIndex].word.toLowerCase();
   const hint = randomCategory[randomIndex].hint;
   word = randomWord;
-  console.log(`Hint: ${hint}`); // Display the hint for debugging purposes
 };
 
 const placeholder = function (word) {
