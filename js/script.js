@@ -1,389 +1,11 @@
-const wordData = {
-  classesWords: [
-    {
-      word: "Paladin",
-    },
-    {
-      word: "Warrior",
-    },
-    {
-      word: "Dark Knight",
-    },
-    {
-      word: "White Mage",
-    },
-    {
-      word: "Scholar",
-    },
-    {
-      word: "Astrologian",
-    },
-    {
-      word: "Monk",
-    },
-    {
-      word: "Dragoon",
-    },
-    { word: "Ninja" },
-    {
-      word: "Samurai",
-    },
-    {
-      word: "Bard",
-    },
-    {
-      word: "Machinist",
-    },
-    {
-      word: "Black Mage",
-    },
-    { word: "Summoner" },
-    {
-      word: "Red Mage",
-    },
-    { word: "Blue Mage" },
-    {
-      word: "Gunbreaker",
-    },
-    {
-      word: "Dancer",
-    },
-    {
-      word: "Marauder",
-    },
-    {
-      word: "Gladiator",
-    },
-    {
-      word: "Conjurer",
-    },
-    {
-      word: "Arcanist",
-    },
-    {
-      word: "Pugilist",
-    },
-    {
-      word: "Lancer",
-    },
-    {
-      word: "Rogue",
-    },
-    {
-      word: "Archer",
-    },
-    {
-      word: "Thaumaturge",
-    },
-    {
-      word: "Alchemist",
-    },
-    {
-      word: "Carpenter",
-    },
-    { word: "Blacksmith" },
-    {
-      word: "Armorer",
-    },
-    { word: "Goldsmith" },
-    {
-      word: "Leatherworker",
-    },
-    { word: "Weaver" },
-    {
-      word: "Culinarian",
-    },
-    {
-      word: "Miner",
-    },
-    { word: "Botanist" },
-    { word: "Fisher" },
-  ],
-  mainCharacterFirstNames: [
-    { word: "Y'shtola" },
-    { word: "Thancred" },
-    {
-      word: "Urianger",
-    },
-    {
-      word: "Alphinaud",
-    },
-    {
-      word: "Alisaie",
-    },
-    {
-      word: "Minfilia",
-    },
-    {
-      word: "Tataru",
-    },
-    {
-      word: "Yda",
-    },
-    {
-      word: "Papalymo",
-    },
-    { word: "Estinien" },
-    { word: "Aymeric" },
-    { word: "Haurchefant" },
-    { word: "Yugiri" },
-
-    { word: "Lyse" },
-
-    {
-      word: "Raubahn",
-    },
-
-    {
-      word: "Kan-E-Senna",
-    },
-
-    { word: "Merlwyb" },
-
-    {
-      word: "Nanamo",
-    },
-  ],
-  mainLocations: [
-    {
-      word: "Limsa Lominsa",
-    },
-    {
-      word: "Ul'dah",
-    },
-    {
-      word: "Gridania",
-    },
-    {
-      word: "Ishgard",
-    },
-    {
-      word: "Kugane",
-    },
-    {
-      word: "Idyllshire",
-    },
-    {
-      word: "Rhalgr's Reach",
-    },
-    {
-      word: "The Crystarium",
-    },
-    {
-      word: "Eulmore",
-    },
-    {
-      word: "The Rising Stones",
-    },
-    {
-      word: "The Waking Sands",
-    },
-    {
-      word: "The Firmament",
-    },
-    {
-      word: "The Gold Saucer",
-    },
-    {
-      word: "The Ruby Sea",
-    },
-    {
-      word: "Yanxia",
-    },
-  ],
-
-  primalWords: [
-    {
-      word: "Ifrit",
-    },
-    {
-      word: "Titan",
-    },
-    {
-      word: "Garuda",
-    },
-    {
-      word: "Leviathan",
-    },
-    {
-      word: "Ramuh",
-    },
-    {
-      word: "Shiva",
-    },
-    {
-      word: "Ravana",
-    },
-    {
-      word: "Bismarck",
-    },
-    {
-      word: "Alexander",
-    },
-    {
-      word: "Odin",
-    },
-    {
-      word: "Ultima Weapon",
-    },
-    {
-      word: "Sephirot",
-    },
-    {
-      word: "Nidhogg",
-    },
-    {
-      word: "Sophia",
-    },
-    {
-      word: "Susano",
-    },
-    {
-      word: "Byakko",
-    },
-    {
-      word: "Tsukuyomi",
-    },
-    {
-      word: "Suzaku",
-    },
-    {
-      word: "Seiryu",
-    },
-    {
-      word: "Titania",
-    },
-  ],
-  spellWords: [
-    { word: "Fire" },
-    {
-      word: "Blizzard",
-    },
-    {
-      word: "Thunder",
-    },
-    {
-      word: "Aero",
-    },
-    {
-      word: "Stone",
-    },
-    {
-      word: "Water",
-    },
-    {
-      word: "Fira",
-    },
-    {
-      word: "Blizzara",
-    },
-    {
-      word: "Thundara",
-    },
-    {
-      word: "Aerora",
-    },
-    {
-      word: "Stonega",
-    },
-    {
-      word: "Watera",
-    },
-    {
-      word: "Firaga",
-    },
-    {
-      word: "Blizzaga",
-    },
-    {
-      word: "Thundaga",
-    },
-    {
-      word: "Aeroga",
-    },
-    {
-      word: "Quake",
-    },
-    {
-      word: "Tornado",
-    },
-    {
-      word: "Meteor",
-    },
-    {
-      word: "Ultima",
-    },
-    {
-      word: "Cure",
-    },
-    {
-      word: "Curaga",
-    },
-    {
-      word: "Protect",
-    },
-    {
-      word: "Shell",
-    },
-    {
-      word: "Reflect",
-    },
-    {
-      word: "Regen",
-    },
-    {
-      word: "Haste",
-    },
-    {
-      word: "Slow",
-    },
-    {
-      word: "Stop",
-    },
-    {
-      word: "Bio",
-    },
-  ],
-
-  gameMechanics: [
-    {
-      word: "Chocobo",
-    },
-    {
-      word: "Limit Break",
-    },
-    {
-      word: "Materia",
-    },
-    {
-      word: "Glamour",
-    },
-    {
-      word: "Mount",
-    },
-
-    {
-      word: "Duty Finder",
-    },
-    {
-      word: "Teleport",
-    },
-    {
-      word: "Aetherial Manipulation",
-    },
-    {
-      word: "Triple Triad",
-    },
-  ],
-};
-
 const wordInProgress = document.querySelector(".word-in-progress");
 const guessInput = document.querySelector(".letter");
 const playAgainButton = document.querySelector(".btn-play-again");
 const guessButton = document.querySelector(".btn-guess");
 const hintButton = document.querySelector(".btn-hint");
 const message = document.querySelector(".message");
-const remainingGuessesSpan = document.querySelector(".remaining span");
+const remainingText = document.querySelector(".remaining"); // Update this to select the correct element
+const remainingGuessesSpan = document.querySelector(".remaining span"); // Select the correct span for the number
 const guessedLettersElement = document.querySelector(".guessed-letters");
 
 let word;
@@ -499,6 +121,7 @@ const updateGuessesRemaining = function (guess) {
     showPlayAgainButton(); // Show play again button
     guessButton.classList.add("hide"); // Hide guess button
     remainingGuessesSpan.innerText = "0 guesses";
+    remainingText.classList.add("hide"); // Hide the remaining guesses text
   } else if (remainingGuesses === 1) {
     remainingGuessesSpan.innerText = `${remainingGuesses} guess`;
   } else {
@@ -517,6 +140,7 @@ const checkIfWin = function () {
     message.innerHTML = `<p class="highlight">Congratulations! You guessed it correctly!</p>`;
     playWinSound();
     startOver(); // Call startOver function to hide guess button and show play again button
+    remainingText.classList.add("hide"); // Hide the remaining guesses text
   }
 };
 
@@ -545,7 +169,7 @@ playAgainButton.addEventListener("click", function () {
 
   guessButton.classList.remove("hide");
   playAgainButton.classList.add("hide");
-  remainingGuessesSpan.classList.remove("hide");
+  remainingText.classList.remove("hide"); // Show the remaining guesses text again
   guessedLettersElement.classList.remove("hide");
   hintUsed = false; // Reset hint usage
   hintButton.disabled = false; // Enable hint button
@@ -553,7 +177,7 @@ playAgainButton.addEventListener("click", function () {
 
 const startOver = function () {
   guessButton.classList.add("hide");
-  remainingGuessesSpan.classList.add("hide");
+  remainingText.classList.add("hide"); // Hide the remaining guesses text
   guessedLettersElement.classList.add("hide");
   playAgainButton.classList.remove("hide");
 };
