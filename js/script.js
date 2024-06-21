@@ -28,12 +28,7 @@ let remainingGuesses = 10;
 let guessedLetters = [];
 let hintUsed = false;
 
-const playBackgroundMusic = function () {
-  const backgroundMusic = document.getElementById("backgroundMusic");
-  if (backgroundMusic) {
-    backgroundMusic.play();
-  }
-};
+
 
 const getWord = function () {
   if (wordData.length === 0) {
