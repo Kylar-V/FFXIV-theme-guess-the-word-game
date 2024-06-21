@@ -2,14 +2,14 @@
 :root {
   --font-primary: "Old Standard TT", serif;
   --font-secondary: "Cinzel Decorative", serif;
-  --color-primary: #000000;
-  --color-secondary: #0f0f0f;
+  --color-primary: #FFFAFA;
+  --color-secondary: #FFFAFA;
   --color-accent: #28bdbd;
   --color-background: #2515b3;
   --color-background-image: url("../img/Final-Fantasy-XIV-Backgrounds-Laptop.png");
   --color-button-background: #2495c9;
   --color-button-text: #000000;
-  --color-text: #000000;
+  --color-text: #FFFAFA;
   --btn-color-start: #93bfcc;
   --btn-color-end: #2159ad;
   --btn-hover-grow-scale: 1.1;
@@ -24,6 +24,7 @@
 }
 
 body {
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,9 +47,9 @@ body {
   height: 85%;
   padding: 4vw; /* Adjusted padding */
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   overflow: hidden; /* Prevent overflow */
+  background-color: rgba(15, 15, 15, 0.486);
 }
 
 h1 {
@@ -137,7 +138,7 @@ input {
 
 label[for="letter"] {
   font-size: 30px;
-  color: #000000;
+  color: #FFFAFA;
 }
 
 input:active,

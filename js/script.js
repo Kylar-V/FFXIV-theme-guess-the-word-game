@@ -4,9 +4,24 @@ const playAgainButton = document.querySelector(".btn-play-again");
 const guessButton = document.querySelector(".btn-guess");
 const hintButton = document.querySelector(".btn-hint");
 const message = document.querySelector(".message");
-const remainingText = document.querySelector(".remaining"); // Update this to select the correct element
-const remainingGuessesSpan = document.querySelector(".remaining span"); // Select the correct span for the number
+const remainingText = document.querySelector(".remaining span");
 const guessedLettersElement = document.querySelector(".guessed-letters");
+
+const wordData = [
+  "Eorzea", "Hydaelyn", "A Realm Reborn", "Heavensward", "Stormblood",
+  "Shadowbringers", "Endwalker", "Warrior of Light", "Warrior of Darkness",
+  "Crystal Exarch", "Garlemald", "Ishgard", "Limsa Lominsa", "Gridania",
+  "Ul'dah", "Ala Mhigo", "Doma", "Hildibrand", "Primals", "Ascian",
+  "Crystal Tower", "Omega", "Eden", "Alexander", "Bahamut", "Ifrit",
+  "Titan", "Garuda", "Leviathan", "Ramuh", "Shiva", "Ravana", "Bismarck",
+  "Thordan", "Nidhogg", "Zenos", "Y'shtola", "Thancred", "Alphinaud",
+  "Alisaie", "Estinien", "Aymeric", "Merlwyb", "Kan-E-Senna", "Raubahn",
+  "Gaius", "Paladin", "Warrior", "Dark Knight", "Gunbreaker", "White Mage",
+  "Scholar", "Astrologian", "Monk", "Dragoon", "Ninja", "Samurai", "Bard",
+  "Machinist", "Dancer", "Black Mage", "Summoner", "Red Mage", "Blue Mage",
+  "Carpenter", "Blacksmith", "Armorer", "Goldsmith", "Leatherworker",
+  "Weaver", "Alchemist", "Culinarian", "Miner", "Botanist", "Fisher"
+];
 
 let word;
 let remainingGuesses = 10;
@@ -15,18 +30,19 @@ let hintUsed = false;
 
 const playBackgroundMusic = function () {
   const backgroundMusic = document.getElementById("backgroundMusic");
-  backgroundMusic.play();
+  if (backgroundMusic) {
+    backgroundMusic.play();
+  }
 };
 
 const getWord = function () {
-  const categoryKeys = Object.keys(wordData);
-  const randomCategoryKey =
-    categoryKeys[Math.floor(Math.random() * categoryKeys.length)];
-  const randomCategory = wordData[randomCategoryKey];
-  const randomIndex = Math.floor(Math.random() * randomCategory.length);
-  const randomWord = randomCategory[randomIndex].word.toLowerCase();
-  const hint = randomCategory[randomIndex].hint;
-  word = randomWord;
+  if (wordData.length === 0) {
+    console.error("Word data array is empty.");
+    return;
+  }
+  const randomIndex = Math.floor(Math.random() * wordData.length);
+  word = wordData[randomIndex].toLowerCase();
+  placeholder(word);
 };
 
 const placeholder = function (word) {
@@ -44,11 +60,11 @@ const validateInput = function (input) {
     return false;
   } else if (input.length > 1) {
     message.innerText = "Please enter a single letter.";
-    guessInput.value = ""; // Clear the input box
+    guessInput.value = "";
     return false;
   } else if (!input.match(acceptedLetter)) {
     message.innerText = "Please enter a letter between A and Z.";
-    guessInput.value = ""; // Clear the input box
+    guessInput.value = "";
     return false;
   } else {
     return true;
@@ -59,7 +75,7 @@ const makeGuess = function (guess) {
   guess = guess.toUpperCase();
   if (guessedLetters.includes(guess)) {
     message.innerText = "You have already guessed that letter! Guess again!";
-    guessInput.value = ""; // Clear the input box
+    guessInput.value = "";
   } else {
     guessedLetters.push(guess);
     if (!word.toUpperCase().includes(guess)) {
@@ -67,14 +83,14 @@ const makeGuess = function (guess) {
     }
     showGuessedLetters();
     updateWordInProgress(guessedLetters);
-    guessInput.value = ""; // Clear the input box
+    guessInput.value = "";
   }
 };
 
 const showGuessedLetters = function () {
   guessedLettersElement.innerHTML = "";
   const incorrectLetters = guessedLetters.filter(
-    (letter) => !word.toUpperCase().includes(letter)
+    letter => !word.toUpperCase().includes(letter)
   );
   for (const letter of incorrectLetters) {
     const li = document.createElement("li");
@@ -89,7 +105,7 @@ const updateWordInProgress = function (guessedLetters) {
   const revealWord = [];
   for (const letter of wordArray) {
     if (letter === " ") {
-      revealWord.push(" "); // If the letter is a space, keep it as is
+      revealWord.push(" ");
     } else if (guessedLetters.includes(letter)) {
       revealWord.push(letter.toUpperCase());
     } else {
@@ -101,37 +117,40 @@ const updateWordInProgress = function (guessedLetters) {
 };
 
 const playLoseSound = function () {
-  const loseSound = document.getElementById("incorrectGuessSound"); // Get the lose sound element
-  loseSound.play(); // Play the lose sound
+  const loseSound = document.getElementById("incorrectGuessSound");
+  if (loseSound) {
+    loseSound.play();
+  }
 };
 
 const updateGuessesRemaining = function (guess) {
   const upperWord = word.toUpperCase();
   if (!upperWord.includes(guess)) {
     remainingGuesses -= 1;
-    message.innerText = `Sorry, this word doesn't have a ${guess} in it.`;
+    message.innerText = `Nope! Guess again because this word doesn't have a ${guess} in it.`;
   } else {
-    message.innerText = `Nice one! You guessed correctly! The word has the letter ${guess}.`;
+    message.innerText = `Good Job! You guessed correctly! The word has the letter ${guess}.`;
   }
 
   if (remainingGuesses <= 0) {
-    message.innerHTML = `Game over! The word was <span class="highlight">${word}</span>. You've used up all your guesses.`;
+    message.innerHTML = `Game over! You've used up all your guesses. The word was <span class="highlight">${word}</span>.`;
     playLoseSound();
-    disableInputAndButtons(); // Disable input and guess button
-    showPlayAgainButton(); // Show play again button
-    guessButton.classList.add("hide"); // Hide guess button
-    remainingGuessesSpan.innerText = "0 guesses";
-    remainingText.classList.add("hide"); // Hide the remaining guesses text
+    disableInputAndButtons();
+    showPlayAgainButton();
+    guessButton.classList.add("hide");
+    remainingText.innerText = "0 guesses";
   } else if (remainingGuesses === 1) {
-    remainingGuessesSpan.innerText = `${remainingGuesses} guess`;
+    remainingText.innerText = `${remainingGuesses} guess`;
   } else {
-    remainingGuessesSpan.innerText = `${remainingGuesses} guesses`;
+    remainingText.innerText = `${remainingGuesses} guesses`;
   }
 };
 
 const playWinSound = function () {
-  const winSound = document.getElementById("winSound"); // Get the win sound element
-  winSound.play(); // Play the win sound
+  const winSound = document.getElementById("winSound");
+  if (winSound) {
+    winSound.play();
+  }
 };
 
 const checkIfWin = function () {
@@ -139,51 +158,52 @@ const checkIfWin = function () {
     message.classList.add("win");
     message.innerHTML = `<p class="highlight">Congratulations! You guessed it correctly!</p>`;
     playWinSound();
-    startOver(); // Call startOver function to hide guess button and show play again button
-    remainingText.classList.add("hide"); // Hide the remaining guesses text
+    disableInputAndButtons();
+    showPlayAgainButton();
+    remainingText.classList.add("hide");
   }
 };
 
 const disableInputAndButtons = function () {
   guessInput.disabled = true;
   guessButton.disabled = true;
+  hintButton.disabled = true;
 };
 
 const showPlayAgainButton = function () {
   playAgainButton.classList.remove("hide");
+  guessButton.classList.add("hide");
+  hintButton.classList.add("hide");
 };
 
-playAgainButton.addEventListener("click", function () {
-  location.reload();
-});
-
-playAgainButton.addEventListener("click", function () {
-  message.classList.remove("win");
+const startNewGame = function () {
   guessedLetters = [];
   remainingGuesses = 10;
-  remainingGuessesSpan.innerText = `${remainingGuesses} guesses`;
+  remainingText.innerText = `${remainingGuesses} guesses`;
   guessedLettersElement.innerHTML = "";
   message.innerText = "";
-  getWord(); // Generate a new word
-  placeholder(word); // Update the placeholder with the new word
+  getWord();
+  placeholder(word);
 
-  guessButton.classList.remove("hide");
   playAgainButton.classList.add("hide");
-  remainingText.classList.remove("hide"); // Show the remaining guesses text again
-  guessedLettersElement.classList.remove("hide");
-  hintUsed = false; // Reset hint usage
-  hintButton.disabled = false; // Enable hint button
-});
-
-const startOver = function () {
-  guessButton.classList.add("hide");
-  remainingText.classList.add("hide"); // Hide the remaining guesses text
-  guessedLettersElement.classList.add("hide");
-  playAgainButton.classList.remove("hide");
+  guessButton.classList.remove("hide");
+  hintButton.classList.remove("hide");
+  remainingText.classList.remove("hide");
+  guessInput.disabled = false;
+  guessButton.disabled = false;
+  hintButton.disabled = false;
+  hintButton.classList.remove("hide");
+  hintUsed = false; // Reset hintUsed to false for new game
 };
 
+playAgainButton.addEventListener("click", function () {
+  startNewGame();
+});
+
+startNewGame();
+
 guessButton.addEventListener("click", function (event) {
-  event.preventDefault(); // Prevent form submission
+  event.preventDefault();
   const guess = guessInput.value.toLowerCase();
   if (validateInput(guess)) {
     makeGuess(guess);
@@ -194,7 +214,7 @@ hintButton.addEventListener("click", function () {
   if (!hintUsed) {
     const wordArray = word.toUpperCase().split("");
     const remainingLetters = wordArray.filter(
-      (letter) => !guessedLetters.includes(letter) && letter !== " "
+      letter => !guessedLetters.includes(letter) && letter !== " "
     );
 
     if (remainingLetters.length > 0) {
@@ -205,12 +225,8 @@ hintButton.addEventListener("click", function () {
       updateWordInProgress(guessedLetters);
 
       hintUsed = true;
-      hintButton.disabled = true; // Disable the hint button after use
+      hintButton.disabled = true;
+      hintButton.classList.add("hide");
     }
   }
 });
-
-// Call initialization function
-getWord();
-placeholder(word);
-playBackgroundMusic();
