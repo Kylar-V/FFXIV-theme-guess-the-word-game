@@ -16,7 +16,7 @@
   --btn-shimmer-duration: 1.4s;
 }
 
-/* Reset styles and global box-sizing */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -43,12 +43,12 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 90%; /* Adjusted from 80% to make it more flexible */
+  width: 90%; 
   height: 85%;
-  padding: 4vw; /* Adjusted padding */
+  padding: 4vw; 
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  overflow: hidden; /* Prevent overflow */
+  overflow: hidden; 
   background-color: rgba(15, 15, 15, 0.486);
 }
 
@@ -65,14 +65,14 @@ h1 {
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  padding: 10px 0; /* Added padding */
+  padding: 10px 0; 
 }
 
 .guessed-letters li {
-  font-size: 2.5vw; /* Adjusted font size */
+  font-size: 2.5vw; 
   padding: 5px 10px;
-  background-color: rgba(0, 0, 0, 0.1); /* Added background color */
-  border-radius: 5px; /* Added border radius */
+  background-color: rgba(0, 0, 0, 0.1); 
+  border-radius: 5px; 
 }
 
 .message,
@@ -92,10 +92,10 @@ h1 {
 
 .button-container {
   display: flex;
-  flex-direction: column; /* Change flex direction */
+  flex-direction: column; 
   gap: 10px;
   align-items: center;
-  margin: 20px 0; /* Adjusted margin */
+  margin: 20px 0; 
 }
 
 .container p {
@@ -132,7 +132,7 @@ input {
   text-align: center;
   font-size: 4vw;
   margin-top: 0.5em;
-  padding: 1vw; /* Adjusted padding */
+  padding: 1vw; 
   border: 3px solid var(--color-accent);
 }
 
@@ -151,7 +151,7 @@ input:focus {
 .btn-guess,
 .btn-play-again,
 .btn-hint {
-  padding: 1vw 1.5vw; /* Adjusted padding */
+  padding: 1vw 1.5vw; 
   border-radius: 25px;
   margin-top: 1em;
   color: var(--color-button-text);
@@ -177,7 +177,7 @@ input:focus {
 .hide {
   display: none;
 }
-/* Shimmer effect */
+
 .btn::before,
 .btn-guess::before,
 .btn-play-again::before,
@@ -197,7 +197,7 @@ input:focus {
     transparent
   );
   background-size: 200% 100%;
-  animation: shimmer var(--btn-shimmer-duration) infinite; /* Added 'infinite' to make the animation continuous */
+  animation: shimmer var(--btn-shimmer-duration) infinite; 
 }
 
 @keyframes shimmer {
@@ -210,7 +210,7 @@ input:focus {
 }
 
 
-/*styles for tablets*/
+
 @media screen and (min-width: 765px) {
   .container {
     width: 80%;
@@ -249,7 +249,7 @@ input:focus {
   }
 }
 
-/*styles for laptops.*/
+
 @media screen and (min-width: 1200px) {
   .container {
     width: 60%;
@@ -280,7 +280,7 @@ input:focus {
   .btn-play-again,
   .btn-hint {
     font-size: 1em;
-    padding: 0.75em 1.25em; /* Adjust padding to make buttons smaller */
+    padding: 0.75em 1.25em; 
   }
 
   .button-container {

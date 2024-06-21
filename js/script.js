@@ -20,7 +20,13 @@ const wordData = [
   "Scholar", "Astrologian", "Monk", "Dragoon", "Ninja", "Samurai", "Bard",
   "Machinist", "Dancer", "Black Mage", "Summoner", "Red Mage", "Blue Mage",
   "Carpenter", "Blacksmith", "Armorer", "Goldsmith", "Leatherworker",
-  "Weaver", "Alchemist", "Culinarian", "Miner", "Botanist", "Fisher"
+  "Weaver", "Alchemist", "Culinarian", "Miner", "Botanist", "Fisher",
+  "Chocobo", "Moogle", "Materia", "Cid", "Sephiroth", "Aerith", "Zanarkand",
+  "Blitzball", "Jenova", "Midgar", "Yuna", "Summoner", "Buster Sword",
+  "Ultros", "Gilgamesh", "Terra", "Balthier", "Vincent", "Lightning",
+  "Shiva", "Bahamut", "Ifrit", "Ragnarok", "Kefka", "Squall",
+  "Fire", "Blizzard", "Thunder", "Cure", "Bio", "Holy", "Ultima", "Flare", 
+  "Meteor", "Haste", "Slow", "Reflect", "Comet", "Gravity", "Teleport"
 ];
 
 let word;
@@ -188,7 +194,7 @@ const startNewGame = function () {
   guessButton.disabled = false;
   hintButton.disabled = false;
   hintButton.classList.remove("hide");
-  hintUsed = false; // Reset hintUsed to false for new game
+  hintUsed = false; 
 };
 
 playAgainButton.addEventListener("click", function () {
