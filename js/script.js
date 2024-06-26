@@ -5,7 +5,9 @@ const guessButton = document.querySelector(".btn-guess");
 const hintButton = document.querySelector(".btn-hint");
 const message = document.querySelector(".message");
 const remainingText = document.querySelector(".remaining span");
+const remainingTextContainer = document.querySelector(".remaining");
 const guessedLettersElement = document.querySelector(".guessed-letters");
+
 
 const wordData = [
   "Eorzea", "Hydaelyn", "A Realm Reborn", "Heavensward", "Stormblood",
@@ -29,12 +31,11 @@ const wordData = [
   "Meteor", "Haste", "Slow", "Reflect", "Comet", "Gravity", "Teleport"
 ];
 
+
 let word;
 let remainingGuesses = 10;
 let guessedLetters = [];
 let hintUsed = false;
-
-
 
 const getWord = function () {
   if (wordData.length === 0) {
@@ -138,8 +139,8 @@ const updateGuessesRemaining = function (guess) {
     playLoseSound();
     disableInputAndButtons();
     showPlayAgainButton();
-    guessButton.classList.add("hide");
     remainingText.innerText = "0 guesses";
+    remainingTextContainer.classList.add("hide");
   } else if (remainingGuesses === 1) {
     remainingText.innerText = `${remainingGuesses} guess`;
   } else {
@@ -161,7 +162,7 @@ const checkIfWin = function () {
     playWinSound();
     disableInputAndButtons();
     showPlayAgainButton();
-    remainingText.classList.add("hide");
+    remainingTextContainer.classList.add("hide");
   }
 };
 
@@ -189,7 +190,7 @@ const startNewGame = function () {
   playAgainButton.classList.add("hide");
   guessButton.classList.remove("hide");
   hintButton.classList.remove("hide");
-  remainingText.classList.remove("hide");
+  remainingTextContainer.classList.remove("hide");
   guessInput.disabled = false;
   guessButton.disabled = false;
   hintButton.disabled = false;
