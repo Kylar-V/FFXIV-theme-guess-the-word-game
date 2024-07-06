@@ -66,10 +66,12 @@ h1 {
   justify-content: center;
   gap: 10px;
   padding: 10px 0;
+  max-height: 20vh; 
+  overflow-y: auto; 
 }
 
 .guessed-letters li {
-  font-size: 5vw;
+  font-size: 4.5vw;
   padding: 5px 10px;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -92,7 +94,7 @@ h1 {
 
 .button-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
   align-items: center;
   margin: 20px 0;
@@ -109,12 +111,12 @@ h1 {
 }
 
 .remaining {
-  font-size: 5vw;
+  font-size: 4vw;
   margin-bottom: 20px;
 }
 
 .message {
-  font-size: 6vw;
+  font-size: 5vw;
   text-align: center;
   margin-bottom: 10px;
   color: var(--color-text);
@@ -124,7 +126,7 @@ h1 {
 .word-in-progress {
   letter-spacing: 15px;
   color: var(--color-secondary);
-  font-size: 8vw;
+  font-size: 6vw;
 }
 
 input {
@@ -137,7 +139,7 @@ input {
 }
 
 label[for="letter"] {
-  font-size: 4vw;
+  font-size: 4.5vw;
   color: #FFFAFA;
 }
 
@@ -178,13 +180,13 @@ input:focus {
   display: none;
 }
 
-/* Ensure the text stays above the shimmer effect */
+
 .btn-text {
   position: relative;
   z-index: 1;
 }
 
-/* Shimmer effect styling */
+
 .shimmer {
   content: "";
   position: absolute;
@@ -202,7 +204,7 @@ input:focus {
   );
   background-size: 200% 100%;
   animation: shimmer var(--btn-shimmer-duration) infinite;
-  z-index: 0; /* Ensure the shimmer is below the text */
+  z-index: 0; 
 }
 
 @keyframes shimmer {
@@ -214,16 +216,16 @@ input:focus {
   }
 }
 
-/* Media Queries */
+
 @media screen and (min-width: 768px) {
   .container {
-    width: 80%;
-    max-width: 700px;
+    width: 90%;
+    max-width: 90%;
     padding: 3vw;
   }
 
   h1 {
-    font-size: 5vw;
+    font-size: 4vw;
   }
 
   .message,
@@ -233,12 +235,12 @@ input:focus {
   }
 
   .guessed-letters li {
-    font-size: 3.5vw;
+    font-size: 2vw;
   }
 
   input {
-    font-size: 4vw;
-    padding: 1.5vw;
+    font-size: 3.5vw;
+    padding: 1vw;
   }
 
   .btn,
@@ -256,35 +258,39 @@ input:focus {
 
 @media screen and (min-width: 1200px) {
   .container {
-    width: 70%;
-    max-width: 900px;
+    width: 100%;
+    max-width: 85%;
     padding: 2vw;
   }
 
   h1 {
-    font-size: 3.5vw;
+    font-size: 3vw;
   }
 
   .message,
   .remaining,
   .word-in-progress {
-    font-size: 2.5vw;
+    font-size: 1vw;
   }
 
   .guessed-letters li {
-    font-size: 2.5vw;
+    font-size: 1vw;
+  }
+
+  .container p {
+    font-size: 3.3vw;
   }
 
   input {
-    font-size: 3vw;
-    padding: 1vw;
+    font-size: 1.6vw;
+    padding: 0.75vw;
   }
 
   .btn,
   .btn-guess,
   .btn-play-again,
   .btn-hint {
-    font-size: 2vw;
+    font-size: 1.5vw;
     padding: 1vw 2vw;
   }
 
